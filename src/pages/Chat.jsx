@@ -1,12 +1,12 @@
 import React from 'react'
 import AppLayout from '../components/layout/AppLayout'
 
-const Home = () => {
+const Chat = () => {
   return (
     <div>
-      home
+      Chat
     </div>
   )
 }
 
-export default AppLayout()(Home);
+export default AppLayout()(Chat)

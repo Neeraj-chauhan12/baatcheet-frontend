@@ -1,11 +1,11 @@
 import React from 'react'
 
-const About = () => {
+const Groups = () => {
   return (
     <div>
-      about
+      groups
     </div>
   )
 }
 
-export default About
+export default Groups
