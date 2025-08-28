@@ -29,7 +29,7 @@ const App = () => {
       
       <Route path='/login' element={<ProtectRoute user={!user} redirect='/'><Login /> </ProtectRoute>} />
 
- <Route path='*' element={<NotFound />} />
+     <Route path='*' element={<NotFound />} />
 
     </Routes>
 
