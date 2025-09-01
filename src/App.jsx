@@ -1,4 +1,4 @@
-import React, { lazy } from 'react'
+import React, { lazy, Suspense } from 'react'
 import {} from 'react-hot-toast'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import ProtectRoute from './components/auth/ProtectRoute'
@@ -16,6 +16,8 @@ const App = () => {
 
   return (  
     <BrowserRouter>
+
+    <Suspense fallback={<div>Loading...</div>}>
     <Routes>
 
       <Route element={<ProtectRoute user={user}/>} > 
@@ -24,14 +26,14 @@ const App = () => {
       <Route path='/groups' element={<Groups />} />
       </Route>
       
-      
-      
-      
-      <Route path='/login' element={<ProtectRoute user={!user} redirect='/'><Login /> </ProtectRoute>} />
-
+     <Route path='/login' element={<ProtectRoute user={!user} redirect='/'><Login /> </ProtectRoute>} />
      <Route path='*' element={<NotFound />} />
 
     </Routes>
+
+    </Suspense>
+    
+    
 
     </BrowserRouter>
   )

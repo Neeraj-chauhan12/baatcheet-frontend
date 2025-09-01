@@ -1,29 +1,52 @@
 import { AppBar, Box, IconButton, Toolbar, Tooltip, Typography } from '@mui/material'
-import React from 'react'
-import {Add as AddIcon, Menu as MenuIcon,Group as GroupIcon, Search as SearchIcon} from '@mui/icons-material'
+import React, { Suspense,lazy, useState } from 'react'
+import {Add as AddIcon,Logout as LogoutIcon, Menu as MenuIcon,Group as GroupIcon, Search as SearchIcon, Notifications as NotificationsIcon} from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
+const Search =lazy(()=>import('../../specific/Search.jsx'))
+const Notifications =lazy(()=>import('../../specific/Notifications.jsx'))
+const NewGroup =lazy(()=>import('../../dailog/NewGroup.jsx'))
 
 const Header = () => {
 
     const navigate=useNavigate()
 
+    const [isSearch,SetIsSearch]=useState(false)
+    const [isMobile,SetIsMobile]=useState(false)
+    const [isNewGroup,SetIsNewGroup]=useState(false)
+    const [isNotifications,setIsNotifications]=useState(false)
+
+
     const handlemobile=()=>{
-        console.log("mobile")
+      SetIsMobile((prev)=> !prev)
     }
 
     const openSearch=()=>{
         console.log("open")
+        SetIsSearch((prev)=> !prev)
     }
 
-     const add=()=>{
-        console.log("add")
+     const NewGroup=()=>{
+      
+        SetIsNewGroup((prev)=> !prev)
     }
 
       const handleManageGroup=()=>{
-        console.log("manage grup[")
+      
+        SetIsMobile((prev)=> !prev)
+    }
+
+       const handleLogout=()=>{
+      
+    }
+
+    
+       const HandleNotifications=()=>{
+      
+        setIsNotifications((prev)=> !prev)
     }
 
   return (
+    <>
     <Box sx={{flexGrow:1}} height={"4rem"}>
         <AppBar position='static' sx={{bgcolor:"yellow"}} />
         <Toolbar>
@@ -49,7 +72,7 @@ const Header = () => {
                
 
                <Tooltip title="New Group">
-                <IconButton color='inherit' size='large' onClick={add}>
+                <IconButton color='inherit' size='large' onClick={NewGroup}>
                   <AddIcon />
                 </IconButton>
                </Tooltip>
@@ -61,11 +84,50 @@ const Header = () => {
                   <GroupIcon />
                 </IconButton>
                </Tooltip>
+
+               <Tooltip title="Notification">
+                <IconButton color='inherit' size='large' onClick={HandleNotifications}>
+                  <NotificationsIcon />
+                </IconButton>
+               </Tooltip>
+
+               <Tooltip title="LogOut">
+                <IconButton color='inherit' size='large' onClick={handleLogout}>
+                  <LogoutIcon />
+                </IconButton>
+               </Tooltip>
             
             
                 </Box>
         </Toolbar>
     </Box>
+
+{
+  isSearch && (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Search />
+    </Suspense>
+  )
+}
+
+{
+  isNotifications && (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Notifications />
+    </Suspense>
+  )
+}
+
+{
+  isNewGroup && (
+    <Suspense fallback={<div>Loading...</div>}>
+      <NewGroup />
+    </Suspense>
+  )
+}
+
+</>
+
   )
 }
 
