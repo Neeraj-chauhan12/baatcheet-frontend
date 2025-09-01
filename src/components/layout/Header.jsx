@@ -1,4 +1,4 @@
-import { AppBar, Box, IconButton, Toolbar, Tooltip, Typography } from '@mui/material'
+import { AppBar, Backdrop, Box, IconButton, Toolbar, Tooltip, Typography } from '@mui/material'
 import React, { Suspense,lazy, useState } from 'react'
 import {Add as AddIcon,Logout as LogoutIcon, Menu as MenuIcon,Group as GroupIcon, Search as SearchIcon, Notifications as NotificationsIcon} from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
@@ -66,9 +66,14 @@ const Header = () => {
              <Box sx={{flexGrow:1}} />
 
             <Box>
-               <IconButton color='inherit' size='large' onClick={openSearch}>
-            <SearchIcon />
-           </IconButton>
+
+              <Tooltip title="search">
+                <IconButton color='inherit' size='large' onClick={openSearch}>
+               <SearchIcon />
+               </IconButton>
+              </Tooltip>
+               
+               
                
 
                <Tooltip title="New Group">
@@ -104,7 +109,7 @@ const Header = () => {
 
 {
   isSearch && (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Backdrop open />}>
       <Search />
     </Suspense>
   )
@@ -112,7 +117,7 @@ const Header = () => {
 
 {
   isNotifications && (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Backdrop open />}>
       <Notifications />
     </Suspense>
   )
@@ -120,7 +125,7 @@ const Header = () => {
 
 {
   isNewGroup && (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Backdrop open />}>
       <NewGroup />
     </Suspense>
   )

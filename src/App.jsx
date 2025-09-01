@@ -2,11 +2,13 @@ import React, { lazy, Suspense } from 'react'
 import {} from 'react-hot-toast'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import ProtectRoute from './components/auth/ProtectRoute'
+import { LayoutLoader } from './components/layout/Loaders'
 const Home=lazy(()=>import("./pages/Home"))
 const Groups=lazy(()=>import("./pages/Groups"))
 const Login=lazy(()=>import("./pages/Login"))
 const Chat=lazy(()=>import("./pages/Chat"))
 const NotFound=lazy(()=>import("./pages/NotFound"))
+//const Loaders=lazy(()=>import("./components/layout/Loaders"))
  
 
 
@@ -17,7 +19,7 @@ const App = () => {
   return (  
     <BrowserRouter>
 
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<LayoutLoader />}>
     <Routes>
 
       <Route element={<ProtectRoute user={user}/>} > 
@@ -32,9 +34,6 @@ const App = () => {
     </Routes>
 
     </Suspense>
-    
-    
-
     </BrowserRouter>
   )
 }
