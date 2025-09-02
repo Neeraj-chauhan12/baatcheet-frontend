@@ -4,9 +4,17 @@ import {Grid} from '@mui/material';
 import ChatList from '../../specific/ChatList';
 import { samplechats } from '../constants/sampledata';
 import { useParams } from 'react-router-dom';
+import Profile from '../../specific/Profile';
+
 
 const AppLayout =()=> (WrappedConponent) => {
   return (props)=>{
+
+    const handleDeleteChat=(e,_id,groupChat)=>{
+      e.preventDefault()
+      console.log("handledeletecgat")
+
+    }
 
   const params=useParams();
   const chatId=params.chatId;
@@ -25,7 +33,8 @@ const AppLayout =()=> (WrappedConponent) => {
                 }
                 ]}
 
-                onlineUsers={["1","2"]}
+                handleDeleteChat={handleDeleteChat}
+
                 />
                 </Grid>
               <Grid item size={4} xs={12} md={5} lg={6}  height={"96vh"}>
@@ -40,7 +49,9 @@ const AppLayout =()=> (WrappedConponent) => {
                  height={"96vh"}
                  padding={"2rem"}
                  bgcolor="rgba(0,0,0,0.85)"
-                >third</Grid>
+                >
+                  <Profile />
+                  </Grid>
             </Grid>
             
             

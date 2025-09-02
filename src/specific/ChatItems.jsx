@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from '../components/Stylecomponents'
 import { Box, Stack, Typography } from '@mui/material'
 import { Height } from '@mui/icons-material'
+import AvatarCard from './AvatarCard'
 
 
 const ChatItems = ({
@@ -13,11 +14,11 @@ const ChatItems = ({
     isOnline,
     newMessageAlert,
     index=0,
-    handleDeleteChatOpen
+    handleDeleteChat
 
 }) => {
   return (
-    <Link to={`/chat/${_id}`} onContextMenu={(e)=>handleDeleteChatOpen(e,_id,groupChat)}>
+    <Link to={`/chat/${_id}`} onContextMenu={(e)=>handleDeleteChat(e,_id,groupChat)}>
         <div style={{
             display:"flex",
             gap:"1rem",
@@ -29,6 +30,9 @@ const ChatItems = ({
         }}>
 
         {/* avatar card */}
+
+        <AvatarCard avatar={avatar} />
+        
             <Stack>
                 <Typography>{name}</Typography>
                 {
