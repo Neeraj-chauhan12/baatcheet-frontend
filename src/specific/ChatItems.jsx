@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from '../components/Stylecomponents'
-import { Stack, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
+import { Height } from '@mui/icons-material'
 
 
 const ChatItems = ({
@@ -27,15 +28,33 @@ const ChatItems = ({
             backgroundColor:sameSender?"black":"upset"
         }}>
 
-        
+        {/* avatar card */}
             <Stack>
                 <Typography>{name}</Typography>
                 {
                     newMessageAlert &&(
-                <Typography >{newMessageAlert.count}new Message</Typography>
+                <Typography >{newMessageAlert.count} New Message</Typography>
                     )
                 }
             </Stack>
+
+
+            {
+                isOnline && (
+                    <Box
+                    sx={{
+                        width:"10px",
+                        height:"10px",
+                        borderRadius:"50%",
+                        backgroundColor:"green",
+                        position:"absolute",
+                        top:"50%",
+                        right:"1rem",
+                        transform:"translate(-50%)"
+                    }}
+                     />
+                )
+            }
 
         </div>
 
